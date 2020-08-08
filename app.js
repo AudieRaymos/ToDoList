@@ -11,9 +11,9 @@ filterOption.addEventListener('click', filterTodo);
 
 //Functions
 
-function addTodo(event) {
+function addTodo(e) {
     //prevent form from submitting
-    event.preventDefault();
+    e.preventDefault();
     //Todo DIV 
     const todoDiv = document.createElement('div')
     todoDiv.classList.add('todo');
@@ -36,28 +36,55 @@ function addTodo(event) {
     todoList.appendChild(todoDiv);
     //Clear Todo INPUT VALUE
     todoInput.value = "";
-} 
+}
 
 function deleteCheck(e) {
     const item = e.target;
     //DELETE TODO
-    if (item.classList[0] === 'trash-btn'){
+    if (item.classList[0] === 'trash-btn') {
         const todo = item.parentElement;
         //Animation
         todo.classList.add("fall")
-        todo.addEventListener('transitionend', function(){
-        todo.remove();
+        todo.addEventListener('transitionend', function () {
+            todo.remove();
         });
     }
 
     //CHECK MARK
-    if(item.classList[0] === "complete-btn"){
+    if (item.classList[0] === "complete-btn") {
         const todo = item.parentElement;
         todo.classList.toggle("completed");
     }
 }
 
-function filterTodo(e){
+function filterTodo(e) {
     const todos = todoList.childNodes;
-    console.log(todos);
+    todos.forEach(function(todo){
+        switch(e.target.value){
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if(todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                }else{
+                    todo.style.display = "none";
+                }
+                break;
+                case "uncompleted":
+                if (!todo.classList.contains("completed")){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+        }
+    });
+}
+
+
+function saveLocalTodos(todo){
+    //CHECK---HEY Do I already have things in there?
+    let todos;
+    if(localStorage.getItem('todos'))
 }
