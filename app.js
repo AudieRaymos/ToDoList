@@ -139,6 +139,6 @@ if(localStorage.getItem("todos") === null) {
 }else{
     todos = JSON.parse(localStorage.getItem('todos'));
 }
-    console.log(todo.children[0].innerText);
+    const todoIndex = todo.children[0].innerTexts;
     console.log(todos.indexOf("dude"));
 }
