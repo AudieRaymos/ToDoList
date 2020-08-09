@@ -99,7 +99,6 @@ function saveLocalTodos(todo){
     }
 
 function getTodos(){
-    console.log("hello")
     //CHECK---HEY Do I already have things in there?
     let todos;
     if(localStorage.getItem("todos") === null) {
@@ -129,4 +128,15 @@ function getTodos(){
     //APPEND TO LIST
     todoList.appendChild(todoDiv);
     });
+}
+
+function removeLocalTodos(todo){
+//CHECK---HEY Do I already have things in there?
+let todos;
+if(localStorage.getItem("todos") === null) {
+    todos = [];
+}else{
+    todos = JSON.parse(localStorage.getItem('todos'));
+}
+
 }
